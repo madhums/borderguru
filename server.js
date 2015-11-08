@@ -6,7 +6,6 @@
 var fs = require('fs');
 var express = require('express');
 var mongoose = require('mongoose');
-var passport = require('passport');
 var config = require('config');
 
 var app = express();
@@ -28,10 +27,10 @@ fs.readdirSync(__dirname + '/app/models').forEach(function (file) {
 });
 
 // Bootstrap application settings
-require('./config/express')(app, passport);
+require('./config/express')(app);
 
 // Bootstrap routes
-require('./config/routes')(app, passport);
+require('./config/routes')(app);
 
 app.listen(port);
 console.log('Express app started on port ' + port);
