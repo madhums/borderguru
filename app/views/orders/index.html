@@ -1,0 +1,59 @@
+{% extends '../layouts/default.html' %}
+
+{% block main %}
+  <h2>{{ title }}</h2>
+{% endblock %}
+
+{% block content %}
+
+  {% if (orders.length) %}
+
+    <form class="form-inline">
+      <strong>Filters:</strong>&nbsp;
+
+      <select name="company" class="form-control" onchange="this.form.submit()">
+        <option value=""> -- select a company -- </option>
+        {% for _company in companies %}
+          <option value="{{ _company }}" {% if (company == _company) %}selected{% endif %}>
+            {{ _company }}
+          </option>
+        {% endfor %}
+      </select>
+
+      &nbsp;
+
+      <select name="address" class="form-control" onchange="this.form.submit()">
+        <option value=""> -- select an address -- </option>
+        {% for _address in addresses %}
+          <option value="{{ _address }}" {% if (address == _address) %}selected{% endif %}>
+            {{ _address }}
+          </option>
+        {% endfor %}
+      </select>
+    </form>
+
+    &nbsp;
+
+    <hr>
+
+    <table class="table">
+      <thead>
+        <th>Order Id</th>
+        <th>Company Name</th>
+        <th>Customer Address</th>
+        <th colspan="2">Ordered Item</th>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+          {% include 'order.html' %}
+        {% endfor %}
+      </tbody>
+    </table>
+
+  {% else %}
+    <h4 class="muted">
+      No orders.&nbsp;
+      <a href="/orders/create">create few</a>
+    </h4>
+  {% endif %}
+{% endblock %}

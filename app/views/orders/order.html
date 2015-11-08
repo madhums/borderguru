@@ -1,0 +1,21 @@
+<tr>
+  <td>
+    {{ order.order_id }}
+  </td>
+  <td>
+    {{ order.company_name }}
+  </td>
+  <td>
+    {{ order.customer_address }}
+  </td>
+  <td>
+    {{ order.order_item }}
+    <span class="text-muted">({{ order.order_count }})</span>
+  </td>
+  <td>
+    <form action="{{ '/orders/' + order.id }}" method="post" onsubmit="return confirm('Are you sure?')">
+      <input type="hidden" name="_method" value="DELETE">
+      <button class="btn btn-danger" type="submit">Delete</button>
+    </form>
+  </td>
+</tr>

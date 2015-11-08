@@ -4,15 +4,22 @@
  */
 
 var mongoose = require('mongoose');
-var home = require('home');
+var orders = require('orders');
 
 /**
  * Expose
  */
 
-module.exports = function (app, passport) {
+module.exports = function (app) {
 
-  app.get('/', home.index);
+  app.get('/', function (req, res) {
+    res.redirect('/orders');
+  });
+
+  app.param('id', orders.load);
+  app.get('/orders', orders.index);
+  app.del('/orders/:id', orders.delete);
+  app.get('/orders/create', orders.create);
 
   /**
    * Error handling
