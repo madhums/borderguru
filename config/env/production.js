@@ -4,5 +4,5 @@
  */
 
 module.exports = {
-  db: 'mongodb://localhost/orders_production'
+  db: process.env.MONGOLAB_URI
 };
